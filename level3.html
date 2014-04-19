@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <title>Level 2: Spiraling Away</title>
+    <title>Level 3: Insert Clever Title Here</title>
     <script type="text/javascript"
             src = "simpleGame.js"></script>
     <script type="text/javascript">
@@ -150,37 +150,6 @@
             }
         }
 
-        function Teleporter(){
-            tTeleporter = new Sprite(game, "teleporter.png", 100, 50);
-            tTeleporter.setSpeed(0);
-
-            tTeleporter.checkCollision = function(){
-                // check if player has reached teleporter
-                if (this.collidesWith(player)){
-                    oTop = this.y - (this.height / 2);
-                    pBottom = player.y + (player.height / 2);
-                    oBottom = this.y + (this.height / 2);
-                    pTop = player.y + (player.height / 2) - 10;
-                    if (pBottom >= oTop || pTop <= oBottom){
-                        player.setPosition(825, 100);
-                    }
-                }
-            }
-            return tTeleporter; 
-        }
-
-        function makeTeleporter(){
-            telWidth = 100;
-            telHeight = 50;
-            teleporter = new Teleporter();
-            teleporter.setPosition(480, 370); // pick point at end of spiral path
-        }
-
-        function updateTeleporter(){
-            teleporter.checkCollision();
-            teleporter.update();
-        }
-
         function init(){
             game = new Scene();
             game.setSize(900, 600);
@@ -191,7 +160,6 @@
             player = new Player();
             player.setPosition(20, 100);
             makeObstacles();
-            makeTeleporter();
             game.start();
         } // end init
         
@@ -202,13 +170,12 @@
             player.checkGravity();
             player.checkBound();
             updateObstacles();
-            updateTeleporter();
             player.update();
         }
     </script>
 </head>
 <body onload = "init()">
-<h1><b>Level 2</b></h1>
-<p>Twists and turns</p>  
+<h1><b>Level 3</b></h1>
+<p>Place creative description here.</p>  
 </body>
 </html>
