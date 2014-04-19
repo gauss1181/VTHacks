@@ -68,7 +68,7 @@
                 if (this.x > 890) {
                     this.x = 890;
                     game.stop();
-                    document.location.href="index.html";
+                    document.location.href="level2.html";
                 }
 
             }
@@ -100,26 +100,30 @@
         function makeObstacles(){
             oWidth = 50;
             oHeight = 25;
-            obstacles = new Array(27);
-            for (i = 0; i < 5; i++){ // vertical wall from top
+            obstacles = new Array(44);
+            for (i = 0; i < 11; i++){ // vertical wall from top
                 obstacles[i] = new Obstacle();
                 obstacles[i].setPosition(200, oHeight * i);
             }
-            for (j = 5; j < 12; j++){ // vertical wall from bottom
+            for (j = 11; j < 14; j++){ // vertical wall from bottom
                 obstacles[j] = new Obstacle();
-                obstacles[j].setPosition(200, 590 - oHeight * (j-5));
+                obstacles[j].setPosition(200, 590 - oHeight * (j-11));
             }
-            for (k = 12; k < 18; k++){
+            for (k = 14; k < 20; k++){
                 obstacles[k] = new Obstacle();
-                obstacles[k].setPosition(800 - oWidth * (k-11), oHeight * (k-12));
+                obstacles[k].setPosition(800 - oWidth * (k-13), oHeight * (k-14));
             }
-            for (m = 18; m < 24; m++){
+            for (m = 20; m < 29; m++){
                 obstacles[m] = new Obstacle();
-                obstacles[m].setPosition(800 - oWidth * (m-17), 500 - oHeight * (m-18));
+                obstacles[m].setPosition(950 - oWidth * (m-19), 575 - oHeight * (m-20));
             }
-            for (n = 24; n < 30; n++){ // horizontal block of walls
+            for (n = 29; n < 37; n++){ // horizontal block of walls
                 obstacles[n] = new Obstacle();
-                obstacles[n].setPosition(880 - oWidth * (n-24), 250);
+                obstacles[n].setPosition(930 - oWidth * (n-28), 350);
+            }
+            for (p = 37; p < 44; p++){ // bottom ground pit
+                obstacles[p] = new Obstacle();
+                obstacles[p].setPosition(840 - oWidth * (p-37), 590);
             }
         }
 
@@ -134,7 +138,7 @@
             game = new Scene();
             game.setSize(900, 600);
             timer = new Timer();
-            space1 = new Sprite(game, 900, 600);
+            space1 = new Sprite(game, "Background1.png", 900, 600);
             space1.setSpeed(0);
             space1.setPosition(450, 300);
             player = new Player();
