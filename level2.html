@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <title>Level 2: Newton's Law of Reversal</title>
+    <title>Level 2: Spiraling Away</title>
     <script type="text/javascript"
             src = "simpleGame.js"></script>
     <script type="text/javascript">
@@ -22,19 +22,19 @@
 
             tPlayer.checkKeys = function(){
                 tPlayer.changeImage("cute.gif");
-                if (keysDown[K_RIGHT]){
+                if (keysDown[K_LEFT]){
                     //this.moving = true;
                     this.direction = 270;
                     this.changeXby(-this.step);
                 }
                 
-                if (keysDown[K_LEFT]){
+                if (keysDown[K_RIGHT]){
                     //this.moving = true;
                     this.direction = 90;
                     this.changeXby(this.step);
                 }
                 if (this.moving == false) {
-                    if (keysDown[K_DOWN]){
+                    if (keysDown[K_UP]){
                         //this.moving = true;
                         this.direction = 0;
                         this.changeYby(-4*this.step);
@@ -100,14 +100,46 @@
         function makeObstacles(){
             oWidth = 50;
             oHeight = 25;
-            obstacles = new Array(12);
+            obstacles = new Array(86);
             for (i = 0; i < 5; i++){ // vertical wall from top
                 obstacles[i] = new Obstacle();
                 obstacles[i].setPosition(150, oHeight * i);
             }
-            for (j = 5; j < 12; j++){ // vertical wall from bottom
+            for (j = 5; j < 14; j++){ // vertical wall from bottom
                 obstacles[j] = new Obstacle();
                 obstacles[j].setPosition(150, 590 - oHeight * (j-5));
+            }
+            for (k = 14; k < 25; k++){ // topmost horizontal wall of spiral
+                obstacles[k] = new Obstacle();
+                obstacles[k].setPosition(200 + oWidth * (k-14), oHeight * 4);
+            }
+            for (l = 25; l < 50; l++){ // rightmost vertical wall
+                obstacles[l] = new Obstacle();
+                obstacles[l].setPosition(750, oHeight * (l-25));
+            }
+            for (m = 50; m < 62; m++){ // second-to-left vertical inner wall
+                obstacles[m] = new Obstacle();
+                obstacles[m].setPosition(300, 125 + oHeight * (m-50));
+            }
+            for (n = 62; n < 73; n++){ // THE BLOODY DANGEROUS GROUND
+                obstacles[n] = new Obstacle();
+                obstacles[n].setPosition(200 + oWidth * (n-62), 600);
+            }
+            for (o = 73; o < 78; o++){ // bottom horizontal ceiling
+                obstacles[o] = new Obstacle();
+                obstacles[o].setPosition(350 + oWidth * (o-73), 125 + oHeight * 11);
+            }
+            for (p = 78; p < 83; p++){ // third inner wall
+                obstacles[p] = new Obstacle();
+                obstacles[p].setPosition(550, 375 - oHeight * (p-78));
+            }
+            for (q = 83; q < 84; q++){ // trololol
+                obstacles[q] = new Obstacle();
+                obstacles[q].setPosition(500 - oWidth * (q-83), 275);
+            }
+            for (r = 84; r < 86; r++){ // trololol x2
+                obstacles[r] = new Obstacle();
+                obstacles[r].setPosition(800 + oWidth * (r-84), 600);
             }
         }
 
@@ -144,6 +176,6 @@
 </head>
 <body onload = "init()">
 <h1><b>Level 2</b></h1>
-<p>The world is flipped...and so is the gravity...and your controls!</p>  
+<p>Twists and turns</p>  
 </body>
 </html>
