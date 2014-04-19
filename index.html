@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Augmented Gravreality</title>
+    <script type="text/javascript"
+            src = "simpleGame.js"></script>
+    <script type="text/javascript">
+        var player;
+        var space;
+        var game;
+        var timer;
+        function Player() {
+            tPlayer = new Sprite(game, "cute.gif", 40, 40);
+            tPlayer.show();
+            tPlayer.setSpeed(0);
+            tPlayer.direction = 90;
+            tPlayer.falling = true;
+            tPlayer.moving = true;
+            tPlayer.dead = false;
+            tPlayer.step = 5
+
+            tPlayer.checkKeys = function(){
+                tPlayer.changeImage("cute.gif");
+                if (keysDown[K_LEFT]){
+                    //this.moving = true;
+                    this.direction = 270;
+                    this.changeXby(-this.step);
+                }
+                
+                if (keysDown[K_RIGHT]){
+                    //this.moving = true;
+                    this.direction = 90;
+                    this.changeXby(this.step);
+                }
+                if (this.moving == false) {
+                    if (keysDown[K_UP]){
+                        //this.moving = true;
+                        this.direction = 0;
+                        this.changeYby(-4*this.step);
+                    }
+                }
+            }
+            
+            tPlayer.checkGravity = function(){
+                if (this.moving) {  
+                    if (this.falling) {
+                        this.changeYby(2);
+                        this.addVector(180, 0.4);
+                        console.log(this.speed);
+                        console.log(this.y);
+                    }
+                }
+            } // end checkGravity
+            
+            tPlayer.checkBound = function() {
+                console.log(this.y);
+                if(this.y > 560) {
+                    this.y = 560;
+                    this.moving = false;
+                } 
+                if(this.y < 15) {
+                    this.y = 15;
+                }
+                if (this.x < 15) {
+                    this.x = 15;
+                }
+                if (this.x > 890) {
+                    this.x = 890;
+                    game.stop();
+                    document.location.href="index.html";
+                }
+
+            }
+            
+            return tPlayer;
+        }
+
+        function init(){
+            game = new Scene();
+            game.setSize(900, 600);
+            timer = new Timer();
+            space1 = new Sprite(game, 900, 600);
+            space1.setSpeed(0);
+            space1.setPosition(450, 300);
+            player = new Player();
+            player.setPosition(20, 100);
+            game.start();
+        } // end init
+        
+        function update(){
+            game.clear();
+            space1.update();            
+            player.checkKeys();
+            player.checkGravity();
+            player.checkBound();
+            player.update();
+        }
+    </script>
+</head>
+<body onload = "init()">
+<h1><b>Welcome to Augmented Gravreality!</b></h1>
+<p>Creative description goes here.</p>  
+</body>
+</html>
