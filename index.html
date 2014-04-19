@@ -22,19 +22,19 @@
 
             tPlayer.checkKeys = function(){
                 tPlayer.changeImage("cute.gif");
-                if (keysDown[K_LEFT]){
+                if (keysDown[K_RIGHT]){
                     //this.moving = true;
                     this.direction = 270;
                     this.changeXby(-this.step);
                 }
                 
-                if (keysDown[K_RIGHT]){
+                if (keysDown[K_LEFT]){
                     //this.moving = true;
                     this.direction = 90;
                     this.changeXby(this.step);
                 }
                 if (this.moving == false) {
-                    if (keysDown[K_UP]){
+                    if (keysDown[K_DOWN]){
                         //this.moving = true;
                         this.direction = 0;
                         this.changeYby(-4*this.step);
