@@ -100,26 +100,14 @@
         function makeObstacles(){
             oWidth = 50;
             oHeight = 25;
-            obstacles = new Array(27);
+            obstacles = new Array(12);
             for (i = 0; i < 5; i++){ // vertical wall from top
                 obstacles[i] = new Obstacle();
-                obstacles[i].setPosition(200, oHeight * i);
+                obstacles[i].setPosition(150, oHeight * i);
             }
             for (j = 5; j < 12; j++){ // vertical wall from bottom
                 obstacles[j] = new Obstacle();
-                obstacles[j].setPosition(200, 590 - oHeight * (j-5));
-            }
-            for (k = 12; k < 18; k++){
-                obstacles[k] = new Obstacle();
-                obstacles[k].setPosition(800 - oWidth * (k-11), oHeight * (k-12));
-            }
-            for (m = 18; m < 24; m++){
-                obstacles[m] = new Obstacle();
-                obstacles[m].setPosition(800 - oWidth * (m-17), 500 - oHeight * (m-18));
-            }
-            for (n = 24; n < 30; n++){ // horizontal block of walls
-                obstacles[n] = new Obstacle();
-                obstacles[n].setPosition(880 - oWidth * (n-24), 250);
+                obstacles[j].setPosition(150, 590 - oHeight * (j-5));
             }
         }
 
