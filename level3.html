@@ -68,7 +68,7 @@
                 if (this.x > 890) {
                     this.x = 890;
                     game.stop();
-                    document.location.href="level3.html";
+                    document.location.href="congrats.html";
                 }
 
             }
@@ -76,11 +76,13 @@
             return tPlayer;
         }
 
-        function Obstacle(){
-            tObstacle = new Sprite(game, "wall.png", 50, 20);
-            tObstacle.setSpeed(0);
+        // Horizontal Walls
 
-            tObstacle.checkCollision = function(){
+        function Hobstacle(){
+            tHobstacle = new Sprite(game, "wall.png", 50, 10);
+            tHobstacle.setSpeed(0);
+
+            tHobstacle.checkCollision = function(){
                 // check if player has crashed into obstacle
                 if (this.collidesWith(player)){
                     oTop = this.y - (this.height / 2);
@@ -94,35 +96,131 @@
                     }
                 }
             }
-            return tObstacle; 
+            return tHobstacle; 
         }
 
-        function makeObstacles(){
-            oWidth = 50;
-            oHeight = 20;
-            obstacles = new Array(50);
-            for (i = 0; i < 5; i++){ // vertical wall from top
-                obstacles[i] = new Obstacle();
-                obstacles[i].setPosition(150, oHeight * i);
+        function makeHobstacles(){
+            hWidth = 50;
+            hHeight = 10;
+            hobstacles = new Array(36);
+            for (i = 0; i < 3; i++){ // topmost hobstacle lines
+                hobstacles[i] = new Hobstacle();
+                hobstacles[i].setPosition(150 + hWidth * i, 100);
             }
-            for (j = 5; j < 14; j++){ // vertical wall from bottom
-                obstacles[j] = new Obstacle();
-                obstacles[j].setPosition(150, 590 - oHeight * (j-5));
+            for (j = 3; j < 6; j++){
+                hobstacles[j] = new Hobstacle();
+                hobstacles[j].setPosition(420 + hWidth * (j-3), 50);
             }
-            for (k = 14; k < 25; k++){ // topmost horizontal wall of spiral
-                obstacles[k] = new Obstacle();
-                obstacles[k].setPosition(200 + oWidth * (k-14), oHeight * 4);
+            for (k = 6; k < 9; k++){
+                hobstacles[k] = new Hobstacle();
+                hobstacles[k].setPosition(670 + hWidth * (k-6), 100);
             }
-            for (l = 25; l < 50; l++){ // rightmost vertical wall
-                obstacles[l] = new Obstacle();
-                obstacles[l].setPosition(750, oHeight * (l-25));
+            for (l = 9; l < 21; l++){
+                hobstacles[l] = new Hobstacle();
+                hobstacles[l].setPosition(100 + hWidth * (l-9), 225);
+            }
+            for (m = 21; m < 22; m++){
+                hobstacles[m] = new Hobstacle();
+                hobstacles[m].setPosition(155 + hWidth * (m-21), 375);
+            }
+            for (n = 22; n < 24; n++){
+                hobstacles[n] = new Hobstacle();
+                hobstacles[n].setPosition(100 + hWidth * (n-22), 500);
+            }
+            for (o = 24; o < 29; o++){
+                hobstacles[o] = new Hobstacle();
+                hobstacles[o].setPosition(430 + hWidth * (o-24), 500);
+            }
+            for (p = 29; p < 31; p++){
+                hobstacles[p] = new Hobstacle();
+                hobstacles[p].setPosition(825 + hWidth * (p-29), 240);
+            }
+            for (q = 31; q < 33; q++){
+                hobstacles[q] = new Hobstacle();
+                hobstacles[q].setPosition(825 + hWidth * (q-31), 405);
+            }
+            for (r = 33; r < 36; r++){
+                hobstacles[r] = new Hobstacle();
+                hobstacles[r].setPosition(285 + hWidth * (r-33), 335);
             }
         }
 
-        function updateObstacles(){
-            for (i = 0; i < obstacles.length; i++){
-                obstacles[i].checkCollision();
-                obstacles[i].update();
+        function updateHobstacles(){
+            for (i = 0; i < hobstacles.length; i++){
+                hobstacles[i].checkCollision();
+                hobstacles[i].update();
+            }
+        }
+
+        // Vertical Walls
+
+        function Vobstacle(){
+            tVobstacle = new Sprite(game, "wall2.png", 10, 50);
+            tVobstacle.setSpeed(0);
+
+            tVobstacle.checkCollision = function(){
+                // check if player has crashed into obstacle
+                if (this.collidesWith(player)){
+                    oTop = this.y - (this.height / 2);
+                    pBottom = player.y + (player.height / 2);
+                    oBottom = this.y + (this.height / 2);
+                    pTop = player.y + (player.height / 2) - 10;
+                    if (pBottom >= oTop || pTop <= oBottom){
+                        player.dead = true;
+                        game.stop();
+                        document.location.href = "";
+                    }
+                }
+            }
+            return tVobstacle; 
+        }
+
+        function makeVobstacles(){
+            vWidth = 10;
+            vHeight = 50;
+            vobstacles = new Array(33);
+            for (i = 0; i < 8; i++){ // vertical wall from top
+                vobstacles[i] = new Vobstacle();
+                vobstacles[i].setPosition(125, 120 + vHeight * i);
+            }
+            for (j = 8; j < 10; j++){
+                vobstacles[j] = new Vobstacle();
+                vobstacles[j].setPosition(400, vHeight * (j-8));
+            }
+            for (k = 10; k < 16; k++){
+                vobstacles[k] = new Vobstacle();
+                vobstacles[k].setPosition(405, 245 + vHeight * (k-10));
+            }
+            for (l = 16; l < 19; l++){
+                vobstacles[l] = new Vobstacle();
+                vobstacles[l].setPosition(530, 245 + vHeight * (l-16));
+            }
+            for (m = 19; m < 22; m++){
+                vobstacles[m] = new Vobstacle();
+                vobstacles[m].setPosition(800, 120 + vHeight * (m-19));
+            }
+            for (n = 22; n < 26; n++){
+                vobstacles[n] = new Vobstacle();
+                vobstacles[n].setPosition(800, 425 + vHeight * (n-22));
+            }
+            for (o = 26; o < 29; o++){
+                vobstacles[o] = new Vobstacle();
+                vobstacles[o].setPosition(300, 500 + vHeight * (o-26));
+            }
+            for (p = 29; p < 32; p++){
+                vobstacles[p] = new Vobstacle();
+                vobstacles[p].setPosition(680, 245 + vHeight * (p-29));
+            }
+            for (q = 32; q < 33; q++){
+                vobstacles[q] = new Vobstacle();
+                vobstacles[q].setPosition(895, 25 + vHeight * (q-32));
+            }
+        }
+
+        function updateVobstacles(){
+            for (i = 0; i < vobstacles.length; i++){
+                vobstacles[i].checkCollision();
+                vobstacles[i].update();
             }
         }
 
@@ -135,7 +233,8 @@
             space1.setPosition(450, 300);
             player = new Player();
             player.setPosition(20, 100);
-            makeObstacles();
+            makeHobstacles();
+            makeVobstacles();
             game.start();
         } // end init
         
@@ -145,7 +244,8 @@
             player.checkKeys();
             player.checkGravity();
             player.checkBound();
-            updateObstacles();
+            updateHobstacles();
+            updateVobstacles();
             player.update();
         }
     </script>
