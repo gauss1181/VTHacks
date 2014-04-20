@@ -18,7 +18,7 @@
             tPlayer.falling = true;
             tPlayer.moving = true;
             tPlayer.dead = false;
-            tPlayer.step = 7
+            tPlayer.step = 7;
 
             tPlayer.checkKeys = function(){
                 tPlayer.changeImage("cute.gif");
@@ -77,7 +77,7 @@
         }
 
         function Obstacle(){
-            tObstacle = new Sprite(game, "block.png", 50, 25);
+            tObstacle = new Sprite(game, "wall.png", 50, 20);
             tObstacle.setSpeed(0);
 
             tObstacle.checkCollision = function(){
@@ -99,8 +99,8 @@
 
         function makeObstacles(){
             oWidth = 50;
-            oHeight = 25;
-            obstacles = new Array(86);
+            oHeight = 20;
+            obstacles = new Array(50);
             for (i = 0; i < 5; i++){ // vertical wall from top
                 obstacles[i] = new Obstacle();
                 obstacles[i].setPosition(150, oHeight * i);
@@ -116,30 +116,6 @@
             for (l = 25; l < 50; l++){ // rightmost vertical wall
                 obstacles[l] = new Obstacle();
                 obstacles[l].setPosition(750, oHeight * (l-25));
-            }
-            for (m = 50; m < 62; m++){ // second-to-left vertical inner wall
-                obstacles[m] = new Obstacle();
-                obstacles[m].setPosition(300, 125 + oHeight * (m-50));
-            }
-            for (n = 62; n < 73; n++){ // THE BLOODY DANGEROUS GROUND
-                obstacles[n] = new Obstacle();
-                obstacles[n].setPosition(200 + oWidth * (n-62), 600);
-            }
-            for (o = 73; o < 78; o++){ // bottom horizontal ceiling
-                obstacles[o] = new Obstacle();
-                obstacles[o].setPosition(350 + oWidth * (o-73), 125 + oHeight * 11);
-            }
-            for (p = 78; p < 83; p++){ // third inner wall
-                obstacles[p] = new Obstacle();
-                obstacles[p].setPosition(550, 375 - oHeight * (p-78));
-            }
-            for (q = 83; q < 84; q++){ // trololol
-                obstacles[q] = new Obstacle();
-                obstacles[q].setPosition(500 - oWidth * (q-83), 275);
-            }
-            for (r = 84; r < 86; r++){ // trololol x2
-                obstacles[r] = new Obstacle();
-                obstacles[r].setPosition(800 + oWidth * (r-84), 600);
             }
         }
 
@@ -176,6 +152,6 @@
 </head>
 <body onload = "init()">
 <h1><b>Level 3</b></h1>
-<p>Solve some mind-boggling puzzles while defying the force of gravity here!</p>  
+<p>Special Demo Edition Level! Solve some mind-boggling puzzles while defying the force of gravity here!</p>  
 </body>
 </html>
